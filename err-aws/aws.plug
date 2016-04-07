@@ -1,0 +1,9 @@
+[Core]
+name = AWS
+module = aws
+
+[Documentation]
+description = AWS Plugin for checking Elastic Beanstalk environments and more
+
+[Python]
+version = 2+
