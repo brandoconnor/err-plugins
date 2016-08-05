@@ -13,7 +13,7 @@ class AWS(BotPlugin):
     """
 
     @botcmd(split_args_with=None)
-    def ebstatus(self, message, args):
+    def eb_envs(self, message, args):
         """
         A command which checks Elastic Beanstalk environment statuses for specified
         application environments. If no environment is specified, all are returned.
@@ -26,6 +26,7 @@ class AWS(BotPlugin):
         for app in app_dict['Applications']:
             app_names.append(app['ApplicationName'])
 
+        # this is done so results are sorted by application
         for app in app_names:
             env_dict = self.eb.describe_environments(ApplicationName=app)
             for env in env_dict['Environments']:
@@ -33,3 +34,16 @@ class AWS(BotPlugin):
                     # Don't report on this environment
                     continue
                 yield '{0} - {1}'.format(env['EnvironmentName'], env['Status'])
+
+    @botcmd
+    def eb_apps(self, message, args):
+        """
+        """
+        if 'eb' not in self:
+            self.eb = boto3.client('elasticbeanstalk')
+
+        apps = self.eb.describe_applications()
+        for app in apps:
+            if args and app['ApplicationName'] not in args:
+                continue
+            yield '%s - %s' % (app['ApplicationName'], str(app('DateUpdated')))
