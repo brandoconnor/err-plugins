@@ -43,7 +43,7 @@ class Beanstalk(BotPlugin):
             self.eb = boto3.client('elasticbeanstalk')
 
         apps = self.eb.describe_applications()
-        for app in apps:
+        for app in apps['Applications']:
             if args and app['ApplicationName'] not in args:
                 continue
             yield '{0} - last updated: {1}'.format(app['ApplicationName'], str(app('DateUpdated')))
