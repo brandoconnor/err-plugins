@@ -1,0 +1,9 @@
+[Core]
+name = Beanstalk
+module = beanstalk
+
+[Documentation]
+description = AWS plugin for checking various elastic beanstalk items
+
+[Python]
+version = 2+

@@ -4,6 +4,6 @@
 AWS Plugin for checking Elastic Beanstalk environments and more
 
 ```
-!ebstatus env-prod
-env-prod - Ready
+!eb envs
+!eb apps
 ```

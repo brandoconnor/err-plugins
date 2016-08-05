@@ -7,7 +7,7 @@ import boto3
 from errbot import BotPlugin, botcmd
 
 
-class AWS(BotPlugin):
+class Beanstalk(BotPlugin):
     """
     AWS Plugin for checking Elastic Beanstalk environments and more
     """
@@ -46,4 +46,4 @@ class AWS(BotPlugin):
         for app in apps:
             if args and app['ApplicationName'] not in args:
                 continue
-            yield '%s - %s' % (app['ApplicationName'], str(app('DateUpdated')))
+            yield '%s - last updated: %s' % (app['ApplicationName'], str(app('DateUpdated')))
