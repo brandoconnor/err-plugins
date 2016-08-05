@@ -46,4 +46,4 @@ class Beanstalk(BotPlugin):
         for app in apps:
             if args and app['ApplicationName'] not in args:
                 continue
-            yield '%s - last updated: %s' % (app['ApplicationName'], str(app('DateUpdated')))
+            yield '{0} - last updated: {1}'.format(app['ApplicationName'], str(app('DateUpdated')))
